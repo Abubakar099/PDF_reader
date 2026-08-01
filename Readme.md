@@ -1,72 +1,161 @@
-# Proper Virtual Environment (venv) Setup
+# 📄 RAG PDF Chatbot
 
-## Step 1: Go to Project Folder
+A simple RAG (Retrieval-Augmented Generation) PDF Chatbot built with **Streamlit**, **LangChain**, **Google Gemini**, and **ChromaDB**.
+
+---
+
+# 🚀 Setup Guide
+
+## 1. Clone the Repository
+
 ```bash
-cd /d/Rag/chatbot
-pwd
+git clone <your-repository-url>
+cd PDF_reader
 ```
 
-## Step 2: Remove Old Virtual Environment (if exists)
-```bash
-rm -rf venv
-```
+---
 
-## Step 3: Create a New Virtual Environment
+## 2. Create a Virtual Environment
+
 ```bash
 python -m venv venv
 ```
 
-## Step 4: Activate the Virtual Environment (Git Bash)
+---
+
+## 3. Activate the Virtual Environment
+
+### Git Bash
+
 ```bash
 source venv/Scripts/activate
 ```
 
-## Step 5: Verify Installed Packages
+### Command Prompt (CMD)
+
 ```bash
-pip list
+venv\Scripts\activate
 ```
 
-## Step 6: Install Required Packages
+### PowerShell
+
+```powershell
+venv\Scripts\Activate.ps1
+```
+
+---
+
+## 4. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Or install manually:
+
 ```bash
 pip install langchain langchain-community langchain-google-genai langchain-huggingface
 
 pip install chromadb sentence-transformers
-pip install chromadb
-pip install tesseract
+
 pip install pymupdf pytesseract pdf2image
 
 pip install streamlit python-dotenv
 ```
 
-## Step 7: Verify Installation
-```bash
-pip list
+---
+
+## 5. Create a `.env` File
+
+```env
+GOOGLE_API_KEY=YOUR_GEMINI_API_KEY
 ```
 
-## Step 8: Run the Application
-```bash
-streamlit run app.py
-```
+---
 
-## Step 9: Verify Tesseract OCR Installation
+## 6. Install System Dependencies
+
+### Windows
+
+Install:
+
+- **Tesseract OCR**
+- **Poppler for Windows**
+
+Add both of these folders to your system **PATH**:
+
+- `Tesseract-OCR`
+- `Poppler\Library\bin`
+
+Verify installation:
+
 ```bash
 tesseract --version
 ```
 
-<!-- ******************************** -->
-You'll also need Tesseract OCR itself installed on your system (not just the Python wrapper) — sudo apt install tesseract-poppler-utils poppler-utils on Linux, or the Windows installer if you're on Windows.
+```bash
+pdftoppm -v
+```
 
-Files to create
-pdf-chatbot/
-├── app.py                  # Streamlit UI — upload PDF, chat interface
-├── requirements.txt        # pinned versions for deployment
-├── .env                    # GOOGLE_API_KEY=your_gemini_key (get free at aistudio.google.com)
-├── .gitignore              # ignore .env, chroma_db/, __pycache__
-├── utils/
-│   ├── __init__.py
-│   ├── pdf_loader.py        # extract text; falls back to OCR if page has no text
-│   ├── vectorstore.py       # chunk text, embed, build/query Chroma
-│   └── qa_chain.py          # LangChain retrieval chain + Gemini call
-└── chroma_db/               # auto-created, stores the vector index (gitignore this)
+### Linux (Ubuntu)
 
-What goes in each:
+```bash
+sudo apt update
+
+sudo apt install tesseract-ocr
+
+sudo apt install poppler-utils
+```
+
+---
+
+## 7. Run the Application
+
+```bash
+streamlit run app.py
+```
+
+---
+
+# 📁 Project Structure
+
+```text
+PDF_reader/
+│
+├── app.py
+├── pdf_loader.py
+├── vectorstore.py
+├── qa_chain.py
+├── README.md
+├── requirements.txt
+├── .gitignore
+├── .env                # Ignored by Git
+│
+├── chroma_db/          # Ignored by Git
+├── venv/               # Ignored by Git
+└── __pycache__/        # Ignored by Git
+```
+
+---
+
+# 📦 Technologies Used
+
+- Python
+- Streamlit
+- Google Gemini API
+- LangChain
+- ChromaDB
+- Sentence Transformers
+- PyMuPDF
+- pdf2image
+- pytesseract
+- Poppler
+- Tesseract OCR
+
+---
+
+# 📝 Notes
+
+- `venv/`, `chroma_db/`, `.env`, and `__pycache__/` are ignored using `.gitignore`.
+- Poppler and Tesseract are **system-level dependencies** and must be installed separately.
+- The vector database (`chroma_db/`) is automatically created after processing a PDF.
