@@ -10,7 +10,7 @@ from qa_chain import get_answer
 st.title("📄 PDF Chatbot")
 st.write("Apna PDF upload karo aur uske baare mein sawal poocho.")
 
-# Session state — taake har baar page reload pe vectorstore dobara na bane
+# Session state — 
 if "vectorstore" not in st.session_state:
     st.session_state.vectorstore = None
 
@@ -23,7 +23,7 @@ uploaded_file = st.file_uploader("Apna PDF yahan daalo", type="pdf")
 
 if uploaded_file is not None and st.session_state.vectorstore is None:
     with st.spinner("Loading ...."):
-        # Uploaded file ko temporarily disk pe save karo (kyunke PyMuPDF ko file path chahiye)
+         # upload pdf is temporary save bcz of Pymupdf need file path 
         with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
             tmp_file.write(uploaded_file.read())
             tmp_path = tmp_file.name
@@ -31,7 +31,7 @@ if uploaded_file is not None and st.session_state.vectorstore is None:
         text = extract_text_from_pdf(tmp_path)
         st.session_state.vectorstore = create_vectorstore(text)
 
-        os.remove(tmp_path)  # temporary file delete kar do
+        os.remove(tmp_path)  # temporary file is delete
 
     st.success("PDF process ho gaya! Ab neeche sawal poochh sakte ho.")
 
@@ -42,7 +42,7 @@ if st.session_state.vectorstore is not None:
         with st.chat_message(msg["role"]):
             st.write(msg["content"])
 
-    # Naya sawal
+    
     question = st.chat_input("hello ")
     
 
