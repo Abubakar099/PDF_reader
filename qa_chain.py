@@ -15,11 +15,11 @@ def get_answer(vectorstore, question):
     Vectorstore se relevant chunks dhoondta hai,
     phir Gemini ko bhej kar jawab banata hai.
     """
-    # Step 1: Sabse relevant 3 chunks dhoondo
+    # Step 1:  relevant 3 chunks 
     relevant_docs = vectorstore.similarity_search(question, k=3)
     context = "\n\n".join([doc.page_content for doc in relevant_docs])
 
-    # Step 2: Gemini model taiyar karo
+    
     llm = ChatGoogleGenerativeAI(   
         model="gemini-2.5-flash",
         temperature=0.2,  # kam temperature = zyada factual, kam "creative" jawab
@@ -47,7 +47,7 @@ Sawal:
 Jawab:
 """
 
-    # Step 4: Gemini se jawab lo
+    # Step 4: get ans from gemini
     response = llm.invoke(prompt)
     return response.content
 
