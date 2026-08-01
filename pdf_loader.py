@@ -1,4 +1,4 @@
-import fitz  # PyMuPDF
+import fitz  
 import pytesseract
 from pdf2image import convert_from_path
 
@@ -16,10 +16,10 @@ def extract_text_from_pdf(pdf_path):
         text = page.get_text()
 
         if text.strip():
-            # Normal text mil gaya
+           
             all_text += f"\n--- Page {page_number + 1} ---\n{text}"
         else:
-            # Text khaali hai — matlab yeh scanned/image page hai, OCR use karo
+            # if pdf text is empty then pdf is image page, ocr is using 
             print(f"Page {page_number + 1}: text nahi mila, OCR chala rahe hain...")
             images = convert_from_path(pdf_path, first_page=page_number + 1, last_page=page_number + 1)
             ocr_text = pytesseract.image_to_string(images[0])
@@ -29,8 +29,8 @@ def extract_text_from_pdf(pdf_path):
     return all_text
 
 
-# Yeh hissa sirf testing ke liye hai — jab file directly chalao tab hi chalega
+# just for testing 
 if __name__ == "__main__":
-    test_pdf_path = "Linked List.pdf"  # apna test PDF yahan rakho
+    test_pdf_path = "Linked List.pdf" 
     result = extract_text_from_pdf(test_pdf_path)
-    print(result[:1000])  # sirf pehle 1000 characters print karo, poora nahi
+    print(result[:1000])  
