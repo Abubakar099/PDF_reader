@@ -1,9 +1,8 @@
 import os
 from langchain_google_genai import ChatGoogleGenerativeAI
-# from google import genai
 from dotenv import load_dotenv
 
-# .env file se GOOGLE_API_KEY load karo
+
 load_dotenv()
 # print("API KEY:", os.getenv("GOOGLE_API_KEY"))
 # client = genai.Client(api_key = os.getenv("GOOGLE_API_KEY"))
@@ -22,10 +21,10 @@ def get_answer(vectorstore, question):
     
     llm = ChatGoogleGenerativeAI(   
         model="gemini-2.5-flash",
-        temperature=0.2,  # kam temperature = zyada factual, kam "creative" jawab
+        temperature=0.2,  # "creative" Answer
     )
 
-        # Step 3: Prompt — context + sawal
+        # Step 3: Prompt — context + Ques
    prompt = f"""
 You are "ChatBhai" — a funny, friendly, and intelligent AI assistant.
 
@@ -83,7 +82,7 @@ You are "ChatBhai" — a funny, friendly, and intelligent AI assistant.
     return response.content
 
 
-# Testing ke liye
+# Testing 
 if __name__ == "__main__":
     from pdf_loader import extract_text_from_pdf
     from vectorstore import create_vectorstore
@@ -94,7 +93,7 @@ if __name__ == "__main__":
     question = "yeh document kis baare mein hai? always use roman urdu to give answer"
     answer = get_answer(vectorstore, question)
 
-    print("\n--- Sawal ---")
+    print("\n--- Ques ---")
     print(question)
-    print("\n--- Jawab ---")
+    print("\n--- Answer ---")
     print(answer)
