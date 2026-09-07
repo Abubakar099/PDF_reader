@@ -10,8 +10,8 @@ def create_vectorstore(text, persist_directory="chroma_db"):
     """
     # Step 1: Text in  chunks 
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,     # har chunk mein zyada se zyada 1000 characters
-        chunk_overlap=200,    # consecutive chunks 200 characters overlap karenge (context na toote isliye)
+        chunk_size=1000,     # not more than 1000 characters
+        chunk_overlap=200,    # consecutive chunks 200 characters overlap karenge (dont break a context)
     )
     chunks = splitter.split_text(text)
     print(f"Text {len(chunks)} chunks mein toota gaya")
@@ -31,7 +31,7 @@ def create_vectorstore(text, persist_directory="chroma_db"):
 
 def load_vectorstore(persist_directory="chroma_db"):
     """
-    Pehle se bana hua vectorstore wapas load karta hai (dobara embed karne ki zaroorat nahi).
+    "Loads the previously created vectorstore (no need to embed again)."
     """
     embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     vectorstore = Chroma(
