@@ -10,3 +10,6 @@ pymupdf
 pytesseract
 pdf2image
 python-dotenv
+langchain-core
+langchain-openai
+langchain-protocol

@@ -31,6 +31,10 @@ def extract_text_from_pdf(pdf_path):
 
 # just for testing 
 if __name__ == "__main__":
+<<<<<<< HEAD
     test_pdf_path = "Linked List.pdf" 
+=======
+    test_pdf_path = "Linked List.pdf", "demodata.pdf"  # apna test PDF yahan rakho
+>>>>>>> 4f5599d (upgrade project file)
     result = extract_text_from_pdf(test_pdf_path)
     print(result[:1000])  

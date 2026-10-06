@@ -24,8 +24,13 @@ def get_answer(vectorstore, question):
         temperature=0.2,  # "creative" Answer
     )
 
+<<<<<<< HEAD
         # Step 3: Prompt — context + Ques
    prompt = f"""
+=======
+        # Step 3: Prompt banao — context + sawal
+    prompt = f"""
+>>>>>>> 4f5599d (upgrade project file)
 You are "ChatBhai" — a funny, friendly, and intelligent AI assistant.
 
 ## Personality
@@ -87,7 +92,7 @@ if __name__ == "__main__":
     from pdf_loader import extract_text_from_pdf
     from vectorstore import create_vectorstore
 
-    text = extract_text_from_pdf("Linked List.pdf")
+    text = extract_text_from_pdf("Linked List.pdf","demodata.pdf")
     vectorstore = create_vectorstore(text)
 
     question = "yeh document kis baare mein hai? always use roman urdu to give answer"

@@ -28,3 +28,5 @@ Thumbs.db
 
 # Jupyter
 .ipynb_checkpoints/
+node_modulees
+node_modules/

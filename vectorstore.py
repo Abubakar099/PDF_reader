@@ -45,7 +45,7 @@ def load_vectorstore(persist_directory="chroma_db"):
 if __name__ == "__main__":
     from pdf_loader import extract_text_from_pdf
 
-    text = extract_text_from_pdf("Linked List.pdf")
+    text = extract_text_from_pdf("Linked List.pdf","demodata.pdf")
     vectorstore = create_vectorstore(text)
 
     # Test search 
